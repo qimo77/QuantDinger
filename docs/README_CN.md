@@ -80,7 +80,7 @@
 
 ## 两分钟试用
 
-> **最轻量：先 `pull` 再 `up`，不要 `docker compose up --build`。** 前端用 GHCR 预构建镜像（默认 `3.0.10`），无需 Node、无需 `QuantDinger-Vue` 目录；仅后端在首次启动时本地构建。
+> **最轻量：先 `pull` 再 `up`，不要 `docker compose up --build`。** 前端用 GHCR 预构建镜像（默认 `latest`，可通过 `IMAGE_TAG` / `FRONTEND_TAG` 固定到具体版本），无需 Node、无需 `QuantDinger-Vue` 目录；仅后端在首次启动时本地构建。
 
 **前置条件：** [Docker](https://docs.docker.com/get-docker/) + Compose v2（Windows/macOS 用 Docker Desktop）。标准路径需要 **Git**。**不需要 Node.js**。
 
@@ -383,7 +383,7 @@ IMAGE_TAG=3.0.10
 # FRONTEND_IMAGE=ghcr.io/<你的fork>/quantdinger-frontend
 ```
 
-Tag 解析优先级：`BACKEND_TAG` / `FRONTEND_TAG` → `IMAGE_TAG` → compose 默认值。无根目录 `.env` 时，`docker-compose.yml` 拉取 `ghcr.io/brokermr810/quantdinger-frontend:latest`（仓库已不再包含 `frontend/dist`）；`docker-compose.ghcr.yml` 默认后端 `3.0.9`、前端 `3.0.10`。
+Tag 解析优先级：`BACKEND_TAG` / `FRONTEND_TAG` → `IMAGE_TAG` → compose 默认值 (`latest`)。无根目录 `.env` 时，两个 compose 文件都拉 `ghcr.io/brokermr810/quantdinger-{backend,frontend}:latest`。想固定到某个版本就设置 `IMAGE_TAG`（前后端一起）或 `BACKEND_TAG` / `FRONTEND_TAG`（单边）—— 可用 tag 见 [GitHub Releases](https://github.com/brokermr810/QuantDinger/releases)。
 
 #### 备选方案：从 Vue 源码本地构建前端
 

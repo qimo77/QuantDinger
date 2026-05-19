@@ -384,7 +384,7 @@ IMAGE_TAG=3.0.10
 # FRONTEND_IMAGE=ghcr.io/<your-fork>/quantdinger-frontend
 ```
 
-Tag resolution: `BACKEND_TAG` / `FRONTEND_TAG` → `IMAGE_TAG` → compose defaults. Without a root `.env`, `docker-compose.yml` pulls `ghcr.io/brokermr810/quantdinger-frontend:latest` (bundled `frontend/dist` was removed); `docker-compose.ghcr.yml` defaults to backend `3.0.9` + frontend `3.0.10`.
+Tag resolution: `BACKEND_TAG` / `FRONTEND_TAG` → `IMAGE_TAG` → compose default (`latest`). Without a root `.env`, both compose files pull `ghcr.io/brokermr810/quantdinger-{backend,frontend}:latest`. Pin a specific release by setting `IMAGE_TAG` (lockstep) or `BACKEND_TAG` / `FRONTEND_TAG` (per-side) — see [GitHub Releases](https://github.com/brokermr810/QuantDinger/releases) for available tags.
 
 #### Alternative: build the frontend from Vue source
 
